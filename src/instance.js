@@ -178,7 +178,7 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
     _RawValue() {
       return (
         this.baseValue +
-        this.baseValue * this._AllPercentBuffs() +
+        (this.baseValue * this._AllPercentBuffs()) / 100 +
         this._AllFixedBuffs()
       );
     }

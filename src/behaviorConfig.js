@@ -3,7 +3,7 @@ module.exports = {
   addonType: "behavior",
   id: "skymen_buffed_value",
   name: "buffed_value",
-  version: "1.0.0.0",
+  version: "1.0.0.1",
   category:
     // "attributes",
     // "movements",
