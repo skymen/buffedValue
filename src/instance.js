@@ -169,7 +169,103 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
     _OnAnyBuffEnded() {
       return true;
     }
-    _ForEachBuff() {}
+    _ForEachBuff() {
+      // Get necessary references
+      const runtime = this._runtime;
+      const eventSheetManager = runtime.GetEventSheetManager();
+      const currentEvent = runtime.GetCurrentEvent();
+      const solModifiers = currentEvent.GetSolModifiers();
+      const eventStack = runtime.GetEventStack();
+
+      // Get current stack frame and push new one
+      const oldFrame = eventStack.GetCurrentStackFrame();
+      const newFrame = eventStack.Push(currentEvent);
+
+      for (const buff of Object.keys({
+        ...this.percentBuffs,
+        ...this.fixedBuffs,
+      })) {
+        // ... optionally update state here ...
+        this.lastBuff = buff;
+        // Push a copy of the current SOL
+        eventSheetManager.PushCopySol(solModifiers);
+
+        // Retrigger the current event, running a single loop iteration
+        currentEvent.Retrigger(oldFrame, newFrame);
+
+        // Pop the current SOL
+        eventSheetManager.PopSol(solModifiers);
+      }
+
+      // Pop the event stack frame
+      eventStack.Pop();
+
+      // Return false since event already executed
+      return false;
+    }
+
+    _ForEachPercentBuff() {
+      // Get necessary references
+      const runtime = this._runtime;
+      const eventSheetManager = runtime.GetEventSheetManager();
+      const currentEvent = runtime.GetCurrentEvent();
+      const solModifiers = currentEvent.GetSolModifiers();
+      const eventStack = runtime.GetEventStack();
+
+      // Get current stack frame and push new one
+      const oldFrame = eventStack.GetCurrentStackFrame();
+      const newFrame = eventStack.Push(currentEvent);
+
+      for (const buff of Object.keys(this.percentBuffs)) {
+        // ... optionally update state here ...
+        this.lastBuff = buff;
+        // Push a copy of the current SOL
+        eventSheetManager.PushCopySol(solModifiers);
+
+        // Retrigger the current event, running a single loop iteration
+        currentEvent.Retrigger(oldFrame, newFrame);
+
+        // Pop the current SOL
+        eventSheetManager.PopSol(solModifiers);
+      }
+
+      // Pop the event stack frame
+      eventStack.Pop();
+
+      // Return false since event already executed
+      return false;
+    }
+    _ForEachStaticBuff() {
+      // Get necessary references
+      const runtime = this._runtime;
+      const eventSheetManager = runtime.GetEventSheetManager();
+      const currentEvent = runtime.GetCurrentEvent();
+      const solModifiers = currentEvent.GetSolModifiers();
+      const eventStack = runtime.GetEventStack();
+
+      // Get current stack frame and push new one
+      const oldFrame = eventStack.GetCurrentStackFrame();
+      const newFrame = eventStack.Push(currentEvent);
+
+      for (const buff of Object.keys(this.fixedBuffs)) {
+        // ... optionally update state here ...
+        this.lastBuff = buff;
+        // Push a copy of the current SOL
+        eventSheetManager.PushCopySol(solModifiers);
+
+        // Retrigger the current event, running a single loop iteration
+        currentEvent.Retrigger(oldFrame, newFrame);
+
+        // Pop the current SOL
+        eventSheetManager.PopSol(solModifiers);
+      }
+
+      // Pop the event stack frame
+      eventStack.Pop();
+
+      // Return false since event already executed
+      return false;
+    }
 
     // Expressions
     _Value() {
