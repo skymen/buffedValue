@@ -2,8 +2,8 @@
 module.exports = {
   addonType: "behavior",
   id: "skymen_buffed_value",
-  name: "buffed_value",
-  version: "1.0.0.1",
+  name: "Buffable Value",
+  version: "1.0.0.2",
   category:
     // "attributes",
     // "movements",
@@ -114,6 +114,17 @@ module.exports = {
       },
       name: "Min",
       desc: "Min",
+    },
+    {
+      type: "combo",
+      id: "clampMode",
+      options: {
+        initialValue: "after",
+        items: [
+          { after: "Clamp After Buffs" },
+          { before: "Clamp Before Buffs" },
+        ],
+      },
     },
   ],
   aceCategories: {

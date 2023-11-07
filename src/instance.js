@@ -6,10 +6,12 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
       this.baseValue = 0;
       this.maxValue = 0;
       this.minValue = 0;
+      this.clampMode = 0;
       if (properties) {
         this.baseValue = properties[0];
         this.maxValue = properties[1];
         this.minValue = properties[2];
+        this.clampMode = properties[3];
       }
 
       this.percentBuffs = {};
@@ -170,7 +172,9 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
 
     // Expressions
     _Value() {
-      return this.clamp(this._RawValue(), this.minValue, this.maxValue);
+      return this.clampMode === 0
+        ? this.clamp(this._RawValue(), this.minValue, this.maxValue)
+        : this._RawValue();
     }
     _BaseValue() {
       return this.baseValue;
