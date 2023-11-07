@@ -123,6 +123,7 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
       this.Trigger(C3.Behaviors.skymen_buffed_value.Cnds.OnBuffEnded);
       this.Trigger(C3.Behaviors.skymen_buffed_value.Cnds.OnAnyBuffEnded);
       delete this.percentBuffs[tag];
+
       delete this.fixedBuffs[tag];
     }
     _StopAllBuffs() {
