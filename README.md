@@ -69,6 +69,8 @@ The main files you may want to look at would be instance.js and scriptInterface.
 | On any buff started | On any buff started |  |
 | On any buff ended | On any buff ended |  |
 | For each buff | For each buff |  |
+| For each percent buff | For each percent buff |  |
+| For each static buff | For each static buff |  |
 
 
 ---
