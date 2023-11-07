@@ -1,5 +1,5 @@
 <img src="./src/icon.svg" width="100" /><br>
-# buffed_value <br>
+# Buffable Value <br>
 Description <br>
 <br>
 Author: skymen <br>
@@ -40,6 +40,7 @@ The main files you may want to look at would be instance.js and scriptInterface.
 | Value | Value | float |
 | Max | Max | float |
 | Min | Min | float |
+| undefined | undefined | combo |
 
 
 ---
